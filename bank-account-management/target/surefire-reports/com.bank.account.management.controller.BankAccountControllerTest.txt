@@ -1,0 +1,59 @@
+-------------------------------------------------------------------------------
+Test set: com.bank.account.management.controller.BankAccountControllerTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 1.740 s <<< FAILURE! -- in com.bank.account.management.controller.BankAccountControllerTest
+com.bank.account.management.controller.BankAccountControllerTest.purchaseCard_shouldReturnBadRequest_whenInvalidTypeIsProvided -- Time elapsed: 0.026 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<403> but was:<400>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.bank.account.management.controller.BankAccountControllerTest.purchaseCard_shouldReturnBadRequest_whenInvalidTypeIsProvided(BankAccountControllerTest.java:227)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenAccountNumberIsMissing -- Time elapsed: 0.033 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<200>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenAccountNumberIsMissing(BankAccountControllerTest.java:92)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenBalanceIsMissing -- Time elapsed: 0.010 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<200>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenBalanceIsMissing(BankAccountControllerTest.java:107)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenIdIsPresent -- Time elapsed: 0.010 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<200>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenIdIsPresent(BankAccountControllerTest.java:62)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenCustomerIdIsMissing -- Time elapsed: 0.009 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<200>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenCustomerIdIsMissing(BankAccountControllerTest.java:77)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

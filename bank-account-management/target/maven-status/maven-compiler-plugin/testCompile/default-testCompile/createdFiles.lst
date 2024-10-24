@@ -1,0 +1,4 @@
+com\bank\account\management\controller\BankAccountControllerTest.class
+com\bank\account\management\mapper\BankAccountMapperTest.class
+com\bank\account\management\controller\CustomerControllerTest.class
+com\bank\account\management\BankAccountManagementApplicationTests.class
