@@ -4,7 +4,7 @@ import co.com.sofka.sofkau.cuentaflex.models.Account;
 import co.com.sofka.sofkau.cuentaflex.models.Transaction;
 import co.com.sofka.sofkau.cuentaflex.models.TransactionFactory;
 import co.com.sofka.sofkau.cuentaflex.models.TransactionType;
-import co.com.sofka.sofkau.cuentaflex.models.exceptions.MinimumAmountNotReachedException;
+import co.com.sofka.sofkau.cuentaflex.services.exceptions.MinimumAmountNotReachedException;
 import co.com.sofka.sofkau.cuentaflex.repositories.AccountRepository;
 import co.com.sofka.sofkau.cuentaflex.repositories.FeesRepository;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.TransactionDoneResponseDto;

@@ -1,7 +1,6 @@
 package co.com.sofka.sofkau.cuentaflex.controllers;
 
-import co.com.sofka.sofkau.cuentaflex.models.exceptions.MinimumAmountNotReachedException;
-import co.com.sofka.sofkau.cuentaflex.services.exceptions.InsufficientBalanceException;
+import co.com.sofka.sofkau.cuentaflex.services.exceptions.MinimumAmountNotReachedException;
 import co.com.sofka.sofkau.cuentaflex.services.TransactionsService;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.AddTransactionDto;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.TransactionDoneResponseDto;

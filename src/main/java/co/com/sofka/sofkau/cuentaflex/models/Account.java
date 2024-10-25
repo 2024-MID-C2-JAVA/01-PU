@@ -1,6 +1,6 @@
 package co.com.sofka.sofkau.cuentaflex.models;
 
-import co.com.sofka.sofkau.cuentaflex.services.exceptions.InsufficientBalanceException;
+import co.com.sofka.sofkau.cuentaflex.models.exceptions.InsufficientBalanceException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

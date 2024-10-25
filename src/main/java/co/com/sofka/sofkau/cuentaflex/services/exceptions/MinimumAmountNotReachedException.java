@@ -1,4 +1,4 @@
-package co.com.sofka.sofkau.cuentaflex.models.exceptions;
+package co.com.sofka.sofkau.cuentaflex.services.exceptions;
 
 public class MinimumAmountNotReachedException extends RuntimeException {
     public MinimumAmountNotReachedException(String message) {

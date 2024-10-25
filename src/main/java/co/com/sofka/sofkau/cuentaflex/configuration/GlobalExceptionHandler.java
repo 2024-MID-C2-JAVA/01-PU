@@ -1,6 +1,6 @@
 package co.com.sofka.sofkau.cuentaflex.configuration;
 
-import co.com.sofka.sofkau.cuentaflex.services.exceptions.InsufficientBalanceException;
+import co.com.sofka.sofkau.cuentaflex.models.exceptions.InsufficientBalanceException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
