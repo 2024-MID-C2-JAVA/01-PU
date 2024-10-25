@@ -3,35 +3,25 @@ package com.example.banco_yoder.configuration;
 import com.example.banco_yoder.exception.CuentaNoEncontradaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import reactor.core.publisher.Mono;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * Manejo la excepción CuentaNoEncontradaException.
-     *
-     * @param ex la excepción lanzada.
-     * @return una respuesta 404 con el mensaje de error.
-     */
     @ExceptionHandler(CuentaNoEncontradaException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Mono<ResponseEntity<String>> handleCuentaNoEncontrada(CuentaNoEncontradaException ex) {
-        return Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()));
+    public ResponseEntity<String> handleCuentaNoEncontradaException(CuentaNoEncontradaException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
-    /**
-     * Manejo excepciones generales de tipo RuntimeException.
-     *
-     * @param ex la excepción lanzada.
-     * @return una respuesta 500 con el mensaje de error.
-     */
-    @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Mono<ResponseEntity<String>> handleRuntimeException(RuntimeException ex) {
-        return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor: " + ex.getMessage()));
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleGeneralException(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrió un error interno.");
     }
 }

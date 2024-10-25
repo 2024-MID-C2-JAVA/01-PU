@@ -1,24 +1,19 @@
 package com.example.banco_yoder.service.impl;
 
-
+import com.example.banco_yoder.repository.CuentaRepository;
 import com.example.banco_yoder.domain.Cuenta;
+import com.example.banco_yoder.exception.CuentaNoEncontradaException;
 import com.example.banco_yoder.service.ICuentaService;
-import com.example.banco_yoder.service.usecases.DepositoService;
-import com.example.banco_yoder.service.usecases.RetiroService;
-import com.example.banco_yoder.service.usecases.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 @Service
 public class CuentaServiceImpl implements ICuentaService {
 
-    private final DepositoService depositoService;
-    private final RetiroService retiroService;
-    private final CompraService compraService;
+    private final CuentaRepository cuentaRepository;
 
     @Value("${app.costoDepositoCajero}")
     private Double costoDepositoCajero;
@@ -35,60 +30,98 @@ public class CuentaServiceImpl implements ICuentaService {
     @Value("${app.costoSeguroCompraWeb}")
     private Double costoSeguroCompraWeb;
 
-    @Value("${app.costoCompraEstablecimiento}")
-    private Double costoCompraEstablecimiento;
-
     @Autowired
-    public CuentaServiceImpl(DepositoService depositoService, RetiroService retiroService, CompraService compraService) {
-        this.depositoService = depositoService;
-        this.retiroService = retiroService;
-        this.compraService = compraService;
+    public CuentaServiceImpl(CuentaRepository cuentaRepository) {
+        this.cuentaRepository = cuentaRepository;
     }
 
     @Override
-    public Mono<ResponseEntity<Cuenta>> realizarDepositoDesdeSucursal(String numeroCuenta, Double monto) {
-        return depositoService.execute(numeroCuenta, monto, costoDepositoSucursal)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build()));
+    public ResponseEntity<Cuenta> realizarDepositoDesdeSucursal(String numeroCuenta, Double monto) {
+
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta);
+        if (cuenta == null) {
+            throw new CuentaNoEncontradaException("La cuenta con número " + numeroCuenta + " no fue encontrada.");
+        }
+
+
+        if (monto <= 0) {
+            throw new IllegalArgumentException("El monto debe ser mayor que cero.");
+        }
+
+        return realizarDeposito(numeroCuenta, monto, costoDepositoSucursal);
     }
 
     @Override
-    public Mono<ResponseEntity<Cuenta>> realizarDepositoDesdeCajero(String numeroCuenta, Double monto) {
-        return depositoService.execute(numeroCuenta, monto, costoDepositoCajero)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build()));
+    public ResponseEntity<Cuenta> realizarDepositoDesdeCajero(String numeroCuenta, Double monto) {
+
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta);
+        if (monto > cuenta.getSaldo()) {
+            throw new IllegalArgumentException("El monto excede el saldo disponible.");
+        }
+        return realizarDeposito(numeroCuenta, monto, costoDepositoCajero);
     }
 
     @Override
-    public Mono<ResponseEntity<Cuenta>> realizarDepositoDesdeOtraCuenta(String numeroCuenta, Double monto) {
-        return depositoService.execute(numeroCuenta, monto, costoDepositoOtraCuenta)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build()));
+    public ResponseEntity<Cuenta> realizarDepositoDesdeOtraCuenta(String numeroCuenta, Double monto) {
+        return realizarDeposito(numeroCuenta, monto, costoDepositoOtraCuenta);
+    }
+
+    private ResponseEntity<Cuenta> realizarDeposito(String numeroCuenta, Double monto, Double costoTransaccion) {
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta);
+        if (cuenta == null) {
+            throw new CuentaNoEncontradaException(numeroCuenta);
+        }
+        Double nuevoSaldo = cuenta.getSaldo() + monto - costoTransaccion;
+        cuenta.setSaldo(nuevoSaldo);
+        cuentaRepository.save(cuenta);
+        return ResponseEntity.ok(cuenta);
     }
 
     @Override
-    public Mono<ResponseEntity<Cuenta>> realizarCompraEnEstablecimiento(String numeroCuenta, Double monto) {
-        return compraService.execute(numeroCuenta, monto, costoCompraEstablecimiento)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build()));
+    public ResponseEntity<Cuenta> realizarRetiroDesdeCajero(String numeroCuenta, Double monto) {
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta);
+        if (cuenta == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Double nuevoSaldo = cuenta.getSaldo() - monto - costoRetiro;
+        if (nuevoSaldo < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(cuenta);
+        }
+        cuenta.setSaldo(nuevoSaldo);
+        cuentaRepository.save(cuenta);
+        return ResponseEntity.ok(cuenta);
     }
 
     @Override
-    public Mono<ResponseEntity<Cuenta>> realizarCompraEnWeb(String numeroCuenta, Double monto) {
-        return compraService.execute(numeroCuenta, monto, costoSeguroCompraWeb)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build()));
+    public ResponseEntity<Cuenta> realizarCompraEnEstablecimiento(String numeroCuenta, Double monto) {
+        return realizarCompra(numeroCuenta, monto, 0.0);
     }
 
     @Override
-    public Mono<ResponseEntity<Cuenta>> realizarRetiroDesdeCajero(String numeroCuenta, Double monto) {
-        return retiroService.execute(numeroCuenta, monto, costoRetiro)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).build()));
+    public ResponseEntity<Cuenta> realizarCompraEnWeb(String numeroCuenta, Double monto) {
+        return realizarCompra(numeroCuenta, monto, costoSeguroCompraWeb);
+    }
+
+    private ResponseEntity<Cuenta> realizarCompra(String numeroCuenta, Double monto, Double costoSeguro) {
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta);
+        if (cuenta == null) {
+            throw new CuentaNoEncontradaException(numeroCuenta);
+        }
+        Double nuevoSaldo = cuenta.getSaldo() - monto - costoSeguro;
+        if (nuevoSaldo < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(cuenta);
+        }
+        cuenta.setSaldo(nuevoSaldo);
+        cuentaRepository.save(cuenta);
+        return ResponseEntity.ok(cuenta);
     }
 
     @Override
-    public Mono<Cuenta> obtenerCuentaPorNumero(String numeroCuenta) {
-        return depositoService.obtenerCuentaPorNumero(numeroCuenta);
+    public Cuenta obtenerCuentaPorNumero(String numeroCuenta) {
+        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta);
+        if (cuenta == null) {
+            throw new CuentaNoEncontradaException(numeroCuenta);
+        }
+        return cuenta;
     }
 }

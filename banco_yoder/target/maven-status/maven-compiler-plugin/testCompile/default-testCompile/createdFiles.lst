@@ -1,2 +1,4 @@
 com\example\banco_yoder\controller\CuentaControllerTest.class
+com\example\banco_yoder\service\usescases\CompraServiceTest.class
 com\example\banco_yoder\service\CuentaServiceTest.class
+com\example\banco_yoder\repository\CuentaRepositoryTest.class

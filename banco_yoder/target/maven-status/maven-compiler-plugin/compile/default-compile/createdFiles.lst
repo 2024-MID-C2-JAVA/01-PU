@@ -1,9 +1,13 @@
-com\example\banco_yoder\service\CuentaService.class
+com\example\banco_yoder\domain\Cuenta.class
+com\example\banco_yoder\dto\TransaccionRequest.class
+com\example\banco_yoder\service\ICuentaService.class
+com\example\banco_yoder\service\impl\CuentaServiceImpl.class
 com\example\banco_yoder\configuration\GlobalExceptionHandler.class
+com\example\banco_yoder\service\usecases\RetiroService.class
+com\example\banco_yoder\service\usecases\CompraService.class
+com\example\banco_yoder\service\usecases\DepositoService.class
 com\example\banco_yoder\controller\CuentaController.class
 com\example\banco_yoder\exception\CuentaNoEncontradaException.class
 com\example\banco_yoder\repository\CuentaRepository.class
-com\example\banco_yoder\domain\Cuenta.class
 com\example\banco_yoder\configuration\SwaggerConfig.class
-com\example\banco_yoder\dto\TransaccionRequest.class
 com\example\banco_yoder\BancoYoderApplication.class
