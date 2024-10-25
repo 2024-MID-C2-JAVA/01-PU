@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.bank.account.management.controller.CustomerControllerTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.775 s <<< FAILURE! -- in com.bank.account.management.controller.CustomerControllerTest
-com.bank.account.management.controller.CustomerControllerTest.createCustomer_shouldReturnBadRequest_whenNameIsMissing -- Time elapsed: 0.012 s <<< FAILURE!
+Tests run: 10, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.465 s <<< FAILURE! -- in com.bank.account.management.controller.CustomerControllerTest
+com.bank.account.management.controller.CustomerControllerTest.createCustomer_shouldReturnBadRequest_whenNameIsMissing -- Time elapsed: 0.006 s <<< FAILURE!
 java.lang.AssertionError: Status expected:<400> but was:<200>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
@@ -13,7 +13,7 @@ java.lang.AssertionError: Status expected:<400> but was:<200>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-com.bank.account.management.controller.CustomerControllerTest.createCustomer_shouldReturnBadRequest_whenEmailIsMissing -- Time elapsed: 0.009 s <<< FAILURE!
+com.bank.account.management.controller.CustomerControllerTest.createCustomer_shouldReturnBadRequest_whenEmailIsMissing -- Time elapsed: 0.004 s <<< FAILURE!
 java.lang.AssertionError: Status expected:<400> but was:<200>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
@@ -24,7 +24,7 @@ java.lang.AssertionError: Status expected:<400> but was:<200>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-com.bank.account.management.controller.CustomerControllerTest.createCustomer_shouldReturnBadRequest_whenUsernameIsMissing -- Time elapsed: 0.008 s <<< FAILURE!
+com.bank.account.management.controller.CustomerControllerTest.createCustomer_shouldReturnBadRequest_whenUsernameIsMissing -- Time elapsed: 0.006 s <<< FAILURE!
 java.lang.AssertionError: Status expected:<400> but was:<200>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)

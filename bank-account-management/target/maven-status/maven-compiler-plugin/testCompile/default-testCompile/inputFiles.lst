@@ -2,3 +2,7 @@ C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\t
 C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\controller\BankAccountControllerTest.java
 C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\controller\CustomerControllerTest.java
 C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\mapper\BankAccountMapperTest.java
+C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\repository\BankAccountRepositoryTest.java
+C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\repository\CustomerRepositoryTest.java
+C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\service\BankAccountServiceImplTest.java
+C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management\src\test\java\com\bank\account\management\service\CustomerServiceImplTest.java

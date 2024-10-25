@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.bank.account.management.controller.BankAccountControllerTest" time="1.449" tests="19" errors="0" skipped="0" failures="5">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.bank.account.management.repository.BankAccountRepositoryTest" time="1.198" tests="3" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -63,10 +63,22 @@
     <property name="java.class.version" value="61.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[BankAccountManagement] "/>
   </properties>
-  <testcase name="deposit_shouldReturnBadRequest_whenAmountIsInvalid" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.436">
-    <system-out><![CDATA[2024-10-24T23:40:19.747-03:00  INFO 29064 --- [BankAccountManagement] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bank.account.management.controller.BankAccountControllerTest]: BankAccountControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-10-24T23:40:19.812-03:00  INFO 29064 --- [BankAccountManagement] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bank.account.management.BankAccountManagementApplication for test class com.bank.account.management.controller.BankAccountControllerTest
-2024-10-24T23:40:19.815-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+  <testcase name="testFindByAccountNumberNotFound" classname="com.bank.account.management.repository.BankAccountRepositoryTest" time="0.272">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:231)
+	at com.bank.account.management.repository.BankAccountRepositoryTest.testFindByAccountNumberNotFound(BankAccountRepositoryTest.java:86)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></failure>
+    <system-out><![CDATA[2024-10-24T23:40:21.677-03:00  INFO 29064 --- [BankAccountManagement] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bank.account.management.repository.BankAccountRepositoryTest]: BankAccountRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-10-24T23:40:21.718-03:00  INFO 29064 --- [BankAccountManagement] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bank.account.management.BankAccountManagementApplication for test class com.bank.account.management.repository.BankAccountRepositoryTest
+2024-10-24T23:40:21.723-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -77,275 +89,38 @@
 
  :: Spring Boot ::                (v3.3.4)
 
-2024-10-24T23:40:19.841-03:00  INFO 29064 --- [BankAccountManagement] [           main] c.b.a.m.c.BankAccountControllerTest      : Starting BankAccountControllerTest using Java 17.0.12 with PID 29064 (started by enmanuel.hernandez in C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management)
-2024-10-24T23:40:19.841-03:00  INFO 29064 --- [BankAccountManagement] [           main] c.b.a.m.c.BankAccountControllerTest      : No active profile set, falling back to 1 default profile: "default"
-2024-10-24T23:40:20.363-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-10-24T23:40:20.364-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-10-24T23:40:20.367-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2024-10-24T23:40:20.380-03:00  INFO 29064 --- [BankAccountManagement] [           main] c.b.a.m.c.BankAccountControllerTest      : Started BankAccountControllerTest in 0.566 seconds (process running for 7.217)
+2024-10-24T23:40:21.762-03:00  INFO 29064 --- [BankAccountManagement] [           main] c.b.a.m.r.BankAccountRepositoryTest      : Starting BankAccountRepositoryTest using Java 17.0.12 with PID 29064 (started by enmanuel.hernandez in C:\Users\enmanuel.hernandez\Desktop\sofkaDev\02-PU\bank-account-management)
+2024-10-24T23:40:21.763-03:00  INFO 29064 --- [BankAccountManagement] [           main] c.b.a.m.r.BankAccountRepositoryTest      : No active profile set, falling back to 1 default profile: "default"
+2024-10-24T23:40:21.882-03:00  INFO 29064 --- [BankAccountManagement] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-24T23:40:21.920-03:00  INFO 29064 --- [BankAccountManagement] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 2 JPA repository interfaces.
+2024-10-24T23:40:21.938-03:00  INFO 29064 --- [BankAccountManagement] [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-10-24T23:40:21.965-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:09cd87be-aacb-424b-ab30-1806630cce1c;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-10-24T23:40:22.267-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-24T23:40:22.270-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-24T23:40:22.291-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-24T23:40:22.294-03:00  WARN 29064 --- [BankAccountManagement] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-24T23:40:22.361-03:00  INFO 29064 --- [BankAccountManagement] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists sofka.bank_accounts cascade 
+Hibernate: drop table if exists sofka.customer cascade 
+Hibernate: create table sofka.bank_accounts (balance numeric(38,2), customer_id bigint, id bigint generated by default as identity, account_number varchar(255), primary key (id))
+Hibernate: create table sofka.customer (id bigint generated by default as identity, email varchar(255), name varchar(255), username varchar(255), primary key (id))
+Hibernate: alter table if exists sofka.bank_accounts add constraint FK549t2n7pwdo98ugsdltidkh92 foreign key (customer_id) references sofka.customer
+2024-10-24T23:40:22.400-03:00  INFO 29064 --- [BankAccountManagement] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-24T23:40:22.456-03:00  INFO 29064 --- [BankAccountManagement] [           main] c.b.a.m.r.BankAccountRepositoryTest      : Started BankAccountRepositoryTest in 0.733 seconds (process running for 9.292)
+Hibernate: select ba1_0.id,ba1_0.account_number,ba1_0.balance,ba1_0.customer_id from sofka.bank_accounts ba1_0 where ba1_0.account_number=?
 ]]></system-out>
   </testcase>
-  <testcase name="purchaseCard_shouldReturnBadRequest_whenInvalidTypeIsProvided" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.021">
-    <failure message="Status expected:&lt;403&gt; but was:&lt;400&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<403> but was:<400>
-	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
-	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
-	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
-	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.bank.account.management.controller.BankAccountControllerTest.purchaseCard_shouldReturnBadRequest_whenInvalidTypeIsProvided(BankAccountControllerTest.java:226)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /api/bank-accounts/purchase-card
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"66"]
-             Body = {"accountNumber":"123456789","amount":200.0,"type":"INVALID_TYPE"}
-    Session Attrs = {}
-
-Handler:
-             Type = com.bank.account.management.controller.BankAccountController
-           Method = com.bank.account.management.controller.BankAccountController#deposit(PurchaseDTO)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = com.bank.account.management.controller.exception.InvalidPurchaseTypeException
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 400
-    Error message = null
-          Headers = [Content-Type:"text/plain;charset=UTF-8", Content-Length:"35"]
-     Content type = text/plain;charset=UTF-8
-             Body = Invalid purchase type: INVALID_TYPE
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
+  <testcase name="testFindByAccountNumber" classname="com.bank.account.management.repository.BankAccountRepositoryTest" time="0.123">
+    <system-out><![CDATA[Hibernate: insert into sofka.customer (email,name,username,id) values (?,?,?,default)
+Hibernate: insert into sofka.bank_accounts (account_number,balance,customer_id,id) values (?,?,?,default)
+Hibernate: select ba1_0.id,ba1_0.account_number,ba1_0.balance,ba1_0.customer_id from sofka.bank_accounts ba1_0 where ba1_0.account_number=?
 ]]></system-out>
   </testcase>
-  <testcase name="createAccount_shouldReturnBadRequest_whenAccountNumberIsMissing" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.036">
-    <failure message="Status expected:&lt;400&gt; but was:&lt;200&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<400> but was:<200>
-	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
-	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
-	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
-	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenAccountNumberIsMissing(BankAccountControllerTest.java:91)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /api/bank-accounts
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"33"]
-             Body = {"customerId":1,"balance":1000.0}
-    Session Attrs = {}
-
-Handler:
-             Type = com.bank.account.management.controller.BankAccountController
-           Method = com.bank.account.management.controller.BankAccountController#createAccount(BankAccountDTO)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = []
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
+  <testcase name="testFindByCustomerId" classname="com.bank.account.management.repository.BankAccountRepositoryTest" time="0.012">
+    <system-out><![CDATA[Hibernate: insert into sofka.customer (email,name,username,id) values (?,?,?,default)
+Hibernate: insert into sofka.bank_accounts (account_number,balance,customer_id,id) values (?,?,?,default)
+Hibernate: insert into sofka.bank_accounts (account_number,balance,customer_id,id) values (?,?,?,default)
+Hibernate: select ba1_0.id,ba1_0.account_number,ba1_0.balance,ba1_0.customer_id from sofka.bank_accounts ba1_0 where ba1_0.customer_id=?
 ]]></system-out>
   </testcase>
-  <testcase name="getAccount_shouldReturnBankAccount" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.137"/>
-  <testcase name="deleteAccount_shouldReturnNotFound_whenAccountDoesNotExist" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.011"/>
-  <testcase name="purchaseCard_shouldReturnOk" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.007"/>
-  <testcase name="createAccount_shouldReturnBadRequest_whenBalanceIsMissing" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.005">
-    <failure message="Status expected:&lt;400&gt; but was:&lt;200&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<400> but was:<200>
-	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
-	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
-	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
-	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenBalanceIsMissing(BankAccountControllerTest.java:106)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /api/bank-accounts
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"44"]
-             Body = {"customerId":1,"accountNumber":"123456789"}
-    Session Attrs = {}
-
-Handler:
-             Type = com.bank.account.management.controller.BankAccountController
-           Method = com.bank.account.management.controller.BankAccountController#createAccount(BankAccountDTO)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = []
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
-  <testcase name="withdraw_shouldReturnOk" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.009"/>
-  <testcase name="purchaseCard_shouldReturnForbidden_whenInsufficientFunds" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.008"/>
-  <testcase name="withdrawal_shouldReturnNotFound_whenAccountNotFound" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.01"/>
-  <testcase name="createAccount_shouldReturnBadRequest_whenIdIsPresent" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.008">
-    <failure message="Status expected:&lt;400&gt; but was:&lt;200&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<400> but was:<200>
-	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
-	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
-	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
-	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenIdIsPresent(BankAccountControllerTest.java:61)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /api/bank-accounts
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"68"]
-             Body = {"id":1,"customerId":1,"accountNumber":"123456789","balance":1000.0}
-    Session Attrs = {}
-
-Handler:
-             Type = com.bank.account.management.controller.BankAccountController
-           Method = com.bank.account.management.controller.BankAccountController#createAccount(BankAccountDTO)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = []
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
-  <testcase name="deposit_shouldReturnBadRequest_whenInvalidTypeIsProvided" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.009"/>
-  <testcase name="createAccount_shouldReturnBadRequest_whenCustomerIdIsMissing" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.004">
-    <failure message="Status expected:&lt;400&gt; but was:&lt;200&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<400> but was:<200>
-	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
-	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
-	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
-	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.bank.account.management.controller.BankAccountControllerTest.createAccount_shouldReturnBadRequest_whenCustomerIdIsMissing(BankAccountControllerTest.java:76)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /api/bank-accounts
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"46"]
-             Body = {"accountNumber":"123456789","balance":1000.0}
-    Session Attrs = {}
-
-Handler:
-             Type = com.bank.account.management.controller.BankAccountController
-           Method = com.bank.account.management.controller.BankAccountController#createAccount(BankAccountDTO)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = []
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
-  <testcase name="deleteAccount_shouldReturnNoContent_whenAccountExists" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.008"/>
-  <testcase name="createAccount_shouldReturnCreatedBankAccount" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.007"/>
-  <testcase name="purchaseCard_shouldReturnBadRequest_whenAmountIsInvalid" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.006"/>
-  <testcase name="getAccount_shouldReturnNotFound_whenAccountDoesNotExist" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.018"/>
-  <testcase name="withdrawal_shouldReturnBadRequest_whenAmountIsInvalid" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.007"/>
-  <testcase name="withdrawal_shouldReturnForbidden_whenInsufficientFunds" classname="com.bank.account.management.controller.BankAccountControllerTest" time="0.006"/>
 </testsuite>
