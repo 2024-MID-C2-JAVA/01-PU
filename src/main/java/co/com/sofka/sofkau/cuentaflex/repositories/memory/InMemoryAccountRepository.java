@@ -4,15 +4,15 @@ import co.com.sofka.sofkau.cuentaflex.models.Account;
 import co.com.sofka.sofkau.cuentaflex.repositories.AccountRepository;
 
 public class InMemoryAccountRepository implements AccountRepository {
-    private static Account globalAccount = new Account();
+    private Account globalAccount = new Account();
 
     @Override
     public Account getAccount() {
-        return new Account(globalAccount);
+        return new Account(this.globalAccount);
     }
 
     @Override
     public void saveAccount(Account account) {
-        globalAccount = account;
+        this.globalAccount = account;
     }
 }
