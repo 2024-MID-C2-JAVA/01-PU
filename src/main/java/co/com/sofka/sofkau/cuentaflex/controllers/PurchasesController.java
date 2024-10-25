@@ -5,6 +5,7 @@ import co.com.sofka.sofkau.cuentaflex.services.dtos.AddTransactionDto;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.TransactionDoneResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,12 +19,12 @@ public class PurchasesController {
     }
 
     @PostMapping("/physical-purchases")
-    public ResponseEntity<TransactionDoneResponseDto> registerPhysicalPurchase(AddTransactionDto requestBody) {
+    public ResponseEntity<TransactionDoneResponseDto> registerPhysicalPurchase(@RequestBody AddTransactionDto requestBody) {
         return ResponseEntity.ok(this.transactionsService.processPhysicalPurchase(requestBody.amount()));
     }
 
     @PostMapping("/online-purchases")
-    public ResponseEntity<TransactionDoneResponseDto> registerOnlinePurchase(AddTransactionDto requestBody) {
+    public ResponseEntity<TransactionDoneResponseDto> registerOnlinePurchase(@RequestBody AddTransactionDto requestBody) {
         return ResponseEntity.ok(this.transactionsService.processOnlinePurchase(requestBody.amount()));
     }
 }

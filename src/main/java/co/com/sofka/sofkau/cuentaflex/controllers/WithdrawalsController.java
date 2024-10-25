@@ -5,6 +5,7 @@ import co.com.sofka.sofkau.cuentaflex.services.dtos.AddTransactionDto;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.TransactionDoneResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class WithdrawalsController {
     }
 
     @PostMapping("/atm-withdrawals")
-    public ResponseEntity<TransactionDoneResponseDto> registerAtmWithdrawal(AddTransactionDto requestBody) {
+    public ResponseEntity<TransactionDoneResponseDto> registerAtmWithdrawal(@RequestBody AddTransactionDto requestBody) {
         return ResponseEntity.ok(this.transactionsService.processAtmWithdrawal(requestBody.amount()));
     }
 }

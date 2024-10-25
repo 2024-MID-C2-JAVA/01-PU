@@ -5,10 +5,7 @@ import co.com.sofka.sofkau.cuentaflex.services.TransactionsService;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.AddTransactionDto;
 import co.com.sofka.sofkau.cuentaflex.services.dtos.TransactionDoneResponseDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/account")
@@ -20,17 +17,17 @@ public class DepositsController {
     }
 
     @PostMapping("/branch-deposits")
-    public ResponseEntity<TransactionDoneResponseDto> registerBranchDeposit(AddTransactionDto requestBody) {
+    public ResponseEntity<TransactionDoneResponseDto> registerBranchDeposit(@RequestBody AddTransactionDto requestBody) {
         return ResponseEntity.ok(this.transactionsService.processBranchDeposit(requestBody.amount()));
     }
 
     @PostMapping("/atm-deposits")
-    public ResponseEntity<TransactionDoneResponseDto> registerAtmDeposit(AddTransactionDto requestBody) {
+    public ResponseEntity<TransactionDoneResponseDto> registerAtmDeposit(@RequestBody AddTransactionDto requestBody) {
         return ResponseEntity.ok(this.transactionsService.processAtmDeposit(requestBody.amount()));
     }
 
     @PostMapping("/external-deposits")
-    public ResponseEntity<TransactionDoneResponseDto> registerExternalDeposit(AddTransactionDto requestBody) {
+    public ResponseEntity<TransactionDoneResponseDto> registerExternalDeposit(@RequestBody AddTransactionDto requestBody) {
         return ResponseEntity.ok(this.transactionsService.processExternalDeposit(requestBody.amount()));
     }
 
