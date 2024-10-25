@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+Test set: com.bank.account.management.service.BankAccountServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.255 s <<< FAILURE! -- in com.bank.account.management.service.BankAccountServiceImplTest
+com.bank.account.management.service.BankAccountServiceImplTest.processDeposit_shouldThrowException_whenDepositDTOIsIncomplete -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <com.bank.account.management.controller.exception.InvalidAmountException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at com.bank.account.management.service.BankAccountServiceImplTest.processDeposit_shouldThrowException_whenDepositDTOIsIncomplete(BankAccountServiceImplTest.java:82)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: com.bank.account.management.controller.exception.InvalidAmountException: invalid amount
+	at com.bank.account.management.service.BankAccountServiceImpl.processDeposit(BankAccountServiceImpl.java:61)
+	at com.bank.account.management.service.BankAccountServiceImplTest.lambda$processDeposit_shouldThrowException_whenDepositDTOIsIncomplete$0(BankAccountServiceImplTest.java:83)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+com.bank.account.management.service.BankAccountServiceImplTest.processWithdrawal_shouldThrowException_whenWithdrawalDTOIsIncomplete -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <com.bank.account.management.controller.exception.InvalidAmountException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at com.bank.account.management.service.BankAccountServiceImplTest.processWithdrawal_shouldThrowException_whenWithdrawalDTOIsIncomplete(BankAccountServiceImplTest.java:129)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: com.bank.account.management.controller.exception.InvalidAmountException: invalid amount
+	at com.bank.account.management.service.BankAccountServiceImpl.processWithdrawal(BankAccountServiceImpl.java:113)
+	at com.bank.account.management.service.BankAccountServiceImplTest.lambda$processWithdrawal_shouldThrowException_whenWithdrawalDTOIsIncomplete$3(BankAccountServiceImplTest.java:130)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+com.bank.account.management.service.BankAccountServiceImplTest.processCardPurchase_shouldThrowException_whenPurchaseDTOIsIncomplete -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NullPointerException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at com.bank.account.management.service.BankAccountServiceImplTest.processCardPurchase_shouldThrowException_whenPurchaseDTOIsIncomplete(BankAccountServiceImplTest.java:171)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.lang.NullPointerException: Cannot invoke "java.math.BigDecimal.add(java.math.BigDecimal)" because "amount" is null
+	at com.bank.account.management.service.BankAccountServiceImpl.processCardPurchase(BankAccountServiceImpl.java:100)
+	at com.bank.account.management.service.BankAccountServiceImplTest.lambda$processCardPurchase_shouldThrowException_whenPurchaseDTOIsIncomplete$5(BankAccountServiceImplTest.java:172)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
