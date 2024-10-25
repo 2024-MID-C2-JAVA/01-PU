@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CuentaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bancos</a> &gt; <a href="index.source.html" class="el_package">com.example.banco_yoder.controller</a> &gt; <span class="el_source">CuentaController.java</span></div><h1>CuentaController.java</h1><pre class="source lang-java linenums">package com.example.banco_yoder.controller;
+
+import com.example.banco_yoder.domain.Cuenta;
+import com.example.banco_yoder.service.ICuentaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+
+@RestController
+@RequestMapping(&quot;/api/cuentas&quot;)
+public class CuentaController {
+
+    private final ICuentaService cuentaService;
+
+    @Autowired
+<span class="fc" id="L18">    public CuentaController(ICuentaService cuentaService) {</span>
+<span class="fc" id="L19">        this.cuentaService = cuentaService;</span>
+<span class="fc" id="L20">    }</span>
+
+    @PostMapping(&quot;/deposito/sucursal&quot;)
+    public ResponseEntity&lt;Cuenta&gt; depositoDesdeSucursal(@RequestParam String numeroCuenta,
+                                                        @RequestParam Double monto) {
+<span class="fc" id="L25">        return cuentaService.realizarDepositoDesdeSucursal(numeroCuenta, monto);</span>
+    }
+
+    @PostMapping(&quot;/deposito/cajero&quot;)
+    public ResponseEntity&lt;Cuenta&gt; depositoDesdeCajero(@RequestParam String numeroCuenta,
+                                                      @RequestParam Double monto) {
+<span class="fc" id="L31">        return cuentaService.realizarDepositoDesdeCajero(numeroCuenta, monto);</span>
+    }
+
+    @PostMapping(&quot;/deposito/otraCuenta&quot;)
+    public ResponseEntity&lt;Cuenta&gt; depositoDesdeOtraCuenta(@RequestParam String numeroCuenta,
+                                                          @RequestParam Double monto) {
+<span class="nc" id="L37">        return cuentaService.realizarDepositoDesdeOtraCuenta(numeroCuenta, monto);</span>
+    }
+
+    @PostMapping(&quot;/compra/establecimiento&quot;)
+    public ResponseEntity&lt;Cuenta&gt; compraEnEstablecimiento(@RequestParam String numeroCuenta,
+                                                          @RequestParam Double monto) {
+<span class="fc" id="L43">        return cuentaService.realizarCompraEnEstablecimiento(numeroCuenta, monto);</span>
+    }
+
+    @PostMapping(&quot;/compra/web&quot;)
+    public ResponseEntity&lt;Cuenta&gt; compraEnWeb(@RequestParam String numeroCuenta,
+                                              @RequestParam Double monto) {
+<span class="nc" id="L49">        return cuentaService.realizarCompraEnWeb(numeroCuenta, monto);</span>
+    }
+
+    @PostMapping(&quot;/retiro/cajero&quot;)
+    public ResponseEntity&lt;Cuenta&gt; retiroDesdeCajero(@RequestParam String numeroCuenta,
+                                                    @RequestParam Double monto) {
+<span class="fc" id="L55">        return cuentaService.realizarRetiroDesdeCajero(numeroCuenta, monto);</span>
+    }
+    @GetMapping(&quot;/obtener/{numeroCuenta}&quot;)
+    public ResponseEntity&lt;Cuenta&gt; obtenerCuentaPorNumero(@PathVariable String numeroCuenta) {
+<span class="fc" id="L59">        Cuenta cuenta = cuentaService.obtenerCuentaPorNumero(numeroCuenta);</span>
+<span class="fc" id="L60">        return ResponseEntity.ok(cuenta);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

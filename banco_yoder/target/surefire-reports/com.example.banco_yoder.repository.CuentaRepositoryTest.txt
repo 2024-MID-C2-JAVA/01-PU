@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.banco_yoder.repository.CuentaRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.918 s - in com.example.banco_yoder.repository.CuentaRepositoryTest

@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+bancos,com.example.banco_yoder.exception,CuentaNoEncontradaException,5,0,0,0,2,0,1,0,1,0
+bancos,com.example.banco_yoder.service.impl,CuentaServiceImpl,64,153,10,8,12,33,10,9,1,9
+bancos,com.example.banco_yoder.controller,CuentaController,12,38,0,0,2,9,2,6,2,6
+bancos,com.example.banco_yoder.dto,TransaccionRequest,3,0,0,0,1,0,1,0,1,0
+bancos,com.example.banco_yoder,BancoYoderApplication,5,3,0,0,2,1,1,1,1,1
+bancos,com.example.banco_yoder.domain,Cuenta,4,22,0,0,2,9,1,5,1,5
+bancos,com.example.banco_yoder.configuration,GlobalExceptionHandler,17,3,0,0,3,1,3,1,3,1
+bancos,com.example.banco_yoder.configuration,SwaggerConfig,17,0,0,0,6,0,2,0,2,0
+bancos,com.example.banco_yoder.service.usecases,CompraService,9,39,1,3,2,9,1,3,0,2
+bancos,com.example.banco_yoder.service.usecases,RetiroService,48,0,4,0,11,0,4,0,2,0
+bancos,com.example.banco_yoder.service.usecases,DepositoService,38,0,2,0,9,0,3,0,2,0
