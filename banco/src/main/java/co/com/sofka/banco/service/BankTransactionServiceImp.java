@@ -40,6 +40,7 @@ public class BankTransactionServiceImp implements IBankTransactionService {
     @Override
     @Transactional
     public BankTransaction withdrawFromATM(BankTransactionWithdrawFromATM bankTransaction) {
+        logger.info("Retiro de cajero: {} {}", bankTransaction.getAccountNumber(), bankTransaction.getPin());
         Account byNumber = accountRepository.findByNumberAndPing(bankTransaction.getAccountNumber(), bankTransaction.getPin());
         if (byNumber == null) {
             throw new AccountNotExistException("La cuenta no existe");

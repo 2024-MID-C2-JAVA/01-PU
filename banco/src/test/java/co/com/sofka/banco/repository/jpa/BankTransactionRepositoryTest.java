@@ -8,6 +8,7 @@ import co.com.sofka.banco.repository.BankTransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest(showSql = true)
 public class BankTransactionRepositoryTest {
 
@@ -98,16 +100,11 @@ public class BankTransactionRepositoryTest {
             public void testFindById() {
                 BankTransaction transaction = new BankTransaction();
                 transaction.setOriginAccount(account);
-                transaction.setOriginAccount(account);
-                transaction.setDestinationAccount(account1);
                 transaction.setDestinationAccount(account1);
                 transaction.setAmount(1000.0);
-                transaction.setAmount(1000.0);
-                transaction.setTypeTransaction(typeTransaction);
                 transaction.setTypeTransaction(typeTransaction);
                 transaction.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-                transaction.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
                 BankTransaction savedTransaction = repository.save(transaction);
 
@@ -125,14 +122,9 @@ public class BankTransactionRepositoryTest {
         public void testDeleteByElementId() {
                 BankTransaction transaction = new BankTransaction();
                 transaction.setOriginAccount(account);
-                transaction.setOriginAccount(account);
-                transaction.setDestinationAccount(account1);
-                transaction.setAmount(1000.0);
                 transaction.setDestinationAccount(account1);
                 transaction.setAmount(1000.0);
                 transaction.setTypeTransaction(typeTransaction);
-                transaction.setTypeTransaction(typeTransaction);
-                transaction.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
                 transaction.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
@@ -140,8 +132,8 @@ public class BankTransactionRepositoryTest {
 
                 Long deletedId = repository.deleteByElementId(Long.valueOf(savedTransaction.getId()));
 
-                assertEquals(savedTransaction.getId(), deletedId);
-                assertEquals(savedTransaction.getId(), deletedId);
+                //Mostrar porque es diferente Lon a Long Value
+                assertEquals(savedTransaction.getId().longValue(), deletedId.longValue());
             }
 
 

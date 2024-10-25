@@ -56,7 +56,7 @@ public class BankTransactionServiceImpTest {
     @BeforeEach
     public void setup() {
 
-       // MockitoAnnotations.openMocks(this);
+        //MockitoAnnotations.openMocks(this);
 
         bank = new Bank();
         bank.setId(1L);
@@ -107,39 +107,57 @@ public class BankTransactionServiceImpTest {
     @Test
     public void testWithdrawFromATM_validTransaction() {
 
+        Client client = new Client();
+        client.setId(1L);
 
-        when(accountRepository.findByNumberAndPing("123456789", "1234")).thenReturn(account);
+        Account account = new Account();
+        account.setId(89L);
+        account.setNumber("1111");
+        account.setPin("12345");
+        account.setBalance(1000.0);
+        account.setClient(client);
+
+        TypeTransaction typeTransaction = new TypeTransaction();
+        typeTransaction.setId(3);
+
+        BankTransaction validTransaction = new BankTransaction();
+        validTransaction.setId(44);
+        validTransaction.setAmount(100.0);
+        validTransaction.setCreatedAt(new Date(System.currentTimeMillis()));
+        validTransaction.setOriginAccount(account);
+        validTransaction.setDestinationAccount(account);
+        validTransaction.setTypeTransaction(typeTransaction);
+
+        BankTransaction validTransaction1 = new BankTransaction();
+        validTransaction1.setId(44);
+        validTransaction1.setAmount(100.0);
+        validTransaction1.setCreatedAt(new Date(System.currentTimeMillis()));
+        validTransaction1.setOriginAccount(account);
+        validTransaction1.setDestinationAccount(account);
+        validTransaction1.setTypeTransaction(typeTransaction);
+
+        BankTransactionWithdrawFromATM validWithdrawRequest = new BankTransactionWithdrawFromATM();
+        validWithdrawRequest.setAccountNumber("1111");
+        validWithdrawRequest.setAmount(100.0);
+        validWithdrawRequest.setPin("12345");
+
+
+        when(accountRepository.findByNumberAndPing("1111", "12345")).thenReturn(account);
+
+        when(accountRepository.save(account)).thenReturn(account);
 
         when(bankRepository.findById(1L)).thenReturn(bank);
 
         when(bankRepository.save(bank)).thenReturn(bank);
 
-
-        Account byNumberAndPing = accountRepository.findByNumberAndPing("123456789", "1234");
-
-        TypeTransaction typeTransaction = new TypeTransaction();
-        typeTransaction.setId(3);
-
-        validTransaction = new BankTransaction();
-        validTransaction.setId(1);
-        validTransaction.setAmount(100.0);
-        validTransaction.setCreatedAt(new Date(System.currentTimeMillis()));
-        validTransaction.setOriginAccount(byNumberAndPing);
-        validTransaction.setDestinationAccount(byNumberAndPing);
-        validTransaction.setTypeTransaction(typeTransaction);
-
         when(bankTransactionRepository.save(validTransaction)).thenReturn(validTransaction);
 
-//        accountRepository.findByNumberAndPing("123456789", "1234");
-//
-//        bankRepository.findById(1L);
-//
-//        bankRepository.save(bank);
 
-        BankTransaction result = bankTransactionService.withdrawFromATM(validWithdrawRequest);
+        bankTransactionService.withdrawFromATM(validWithdrawRequest);
 
-        logger.info("Resultado: {}", account);
-
+//        Exception exception = assertThrows(AccountNotExistException.class, () -> {
+//            bankTransactionService.withdrawFromATM(validWithdrawRequest);
+//        });
         assertEquals(899.0, account.getBalance());
         assertEquals(1,bank.getBalance());
     }
@@ -174,7 +192,7 @@ public class BankTransactionServiceImpTest {
     }
 
     // Pruebas de método deposit (Depósito)
-    //@Test
+    @Test
     public void testDeposit_validTransaction() {
         BankTransactionDepositSucursal depositRequest = new BankTransactionDepositSucursal();
         depositRequest.setAmount(10.0);

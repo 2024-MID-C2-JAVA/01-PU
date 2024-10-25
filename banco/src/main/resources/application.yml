@@ -42,6 +42,10 @@ spring:
 #liquibase:
 #  change-log: classpath:db/changelog/db.changelog-master.yaml
 
+hikari:
+  url: ${DB_CONNECTION:jdbc:mysql://localhost:3306/banco?useMysqlMetadata=true&serverTimezone=America/Guayaquil&allowPublicKeyRetrieval=false}
+  username: ${DB_USER:pablo}
+  password: ${DB_PWD:12qwaszx}
 
 logging:
   level:

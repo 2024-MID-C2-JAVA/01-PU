@@ -36,7 +36,7 @@ public class BankTransactionRepository implements IGenericFuntion<BankTransactio
 
     @Override
     public Long deleteByElementId(Long id) {
-        return 0L;
+        return id;
     }
 
     @Override

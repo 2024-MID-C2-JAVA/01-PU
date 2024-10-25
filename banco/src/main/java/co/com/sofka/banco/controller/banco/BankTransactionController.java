@@ -24,6 +24,14 @@ public class BankTransactionController {
 
     private final IBankTransactionService service;
 
+    @GetMapping("/test")
+    public ResponseEntity<GenericResponse<String>> tets() {
+        logger.info("Test");
+        return new ResponseEntity<>( GenericResponse.<String>builder().bodyOut("test")
+                .message("test").code(HttpStatus.OK.value())
+                .build(), HttpStatus.OK);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<GenericResponse<List<BankTransaction>>> getAll() {
         logger.info("Buscando todos los bancos");
