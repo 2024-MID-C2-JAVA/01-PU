@@ -25,7 +25,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(MockitoExtension.class)
 public class BankTransactionServiceImpTest {
 
     private static final Logger logger = LoggerFactory.getLogger(BankTransactionServiceImpTest.class);
@@ -56,7 +56,7 @@ public class BankTransactionServiceImpTest {
     @BeforeEach
     public void setup() {
 
-        //MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks(this);
 
         bank = new Bank();
         bank.setId(1L);
@@ -128,13 +128,7 @@ public class BankTransactionServiceImpTest {
         validTransaction.setDestinationAccount(account);
         validTransaction.setTypeTransaction(typeTransaction);
 
-        BankTransaction validTransaction1 = new BankTransaction();
-        validTransaction1.setId(44);
-        validTransaction1.setAmount(100.0);
-        validTransaction1.setCreatedAt(new Date(System.currentTimeMillis()));
-        validTransaction1.setOriginAccount(account);
-        validTransaction1.setDestinationAccount(account);
-        validTransaction1.setTypeTransaction(typeTransaction);
+
 
         BankTransactionWithdrawFromATM validWithdrawRequest = new BankTransactionWithdrawFromATM();
         validWithdrawRequest.setAccountNumber("1111");
@@ -144,13 +138,25 @@ public class BankTransactionServiceImpTest {
 
         when(accountRepository.findByNumberAndPing("1111", "12345")).thenReturn(account);
 
-        when(accountRepository.save(account)).thenReturn(account);
+        Account byNumberAndPing = accountRepository.findByNumberAndPing("1111", "12345");
+
+        when(accountRepository.save(byNumberAndPing)).thenReturn(byNumberAndPing);
+
+        Account save = accountRepository.save(byNumberAndPing);
+
+        BankTransaction validTransaction1 = new BankTransaction();
+        validTransaction1.setId(44);
+        validTransaction1.setAmount(100.0);
+        validTransaction1.setCreatedAt(new Date(System.currentTimeMillis()));
+        validTransaction1.setOriginAccount(save);
+        validTransaction1.setDestinationAccount(save);
+        validTransaction1.setTypeTransaction(typeTransaction);
 
         when(bankRepository.findById(1L)).thenReturn(bank);
 
         when(bankRepository.save(bank)).thenReturn(bank);
 
-        when(bankTransactionRepository.save(validTransaction)).thenReturn(validTransaction);
+        when(bankTransactionRepository.save(validTransaction1)).thenReturn(validTransaction1);
 
 
         bankTransactionService.withdrawFromATM(validWithdrawRequest);
