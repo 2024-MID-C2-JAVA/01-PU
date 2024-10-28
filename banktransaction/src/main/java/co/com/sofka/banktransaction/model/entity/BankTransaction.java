@@ -1,4 +1,5 @@
-package co.com.sofka.banco.model.entity;
+package co.com.sofka.banktransaction.model.entity;
+
 
 
 import jakarta.persistence.*;

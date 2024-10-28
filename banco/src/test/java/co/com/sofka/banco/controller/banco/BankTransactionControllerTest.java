@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
@@ -19,20 +20,17 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.sql.Timestamp;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureTestEntityManager
-@WebMvcTest(BankTransactionController.class)
+//@AutoConfigureTestEntityManager
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@WebMvcTest(value = BankTransactionController.class)
 class BankTransactionControllerTest {
 
-//    @MockBean
-//    BankTransactionServiceImp service;
+    @MockBean
+    BankTransactionServiceImp service;
 
     @MockBean
     private AccountRepository accountRepository;
@@ -49,6 +47,9 @@ class BankTransactionControllerTest {
     @MockBean
     private TypeTransactionRepository typeTransactionRepository;
 
+    @MockBean
+    private Logger logger;
+
     @Autowired
     MockMvc mockMvc;
 
@@ -56,19 +57,19 @@ class BankTransactionControllerTest {
     private Account account1;
     private TypeTransaction typeTransaction;
 
-    @BeforeEach
-    void setUp() {
-        //MockitoAnnotations.openMocks(this);
-
-        account = new Account();
-        account.setId(1L);
-
-        account1 = new Account();
-        account1.setId(2L);
-
-        typeTransaction = new TypeTransaction();
-        typeTransaction.setId(1);
-    }
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//
+//        account = new Account();
+//        account.setId(1L);
+//
+//        account1 = new Account();
+//        account1.setId(2L);
+//
+//        typeTransaction = new TypeTransaction();
+//        typeTransaction.setId(1);
+//    }
 
     @SneakyThrows
     @Test
