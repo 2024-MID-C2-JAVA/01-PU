@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024102201_PS_01
+      author: pablo.soria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: ../../data/create_table_banco_model.sql
+            relativeToChangelogFile: true
+
+
+  - changeSet:
+      id: 2024102301_PS_02
+      author: pablo.soria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: ../../data/init_data_banco.sql
+            relativeToChangelogFile: true
+
+
+
